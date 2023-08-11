@@ -12,3 +12,4 @@ class User {
         this.photos.push(photoUrl);
     }
 }
+

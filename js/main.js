@@ -45,9 +45,16 @@ addChangeEmailBtn.addEventListener('click', () => {
         console.log('clearing selected photos');
      
         selectedPhotos.innerHTML="";
+
+        currentUser = users.find(el => el.email === emailEl.value);
+
+        if (!currentUser) {
+            currentUser = new User(emailEl.value);
+            users.push(currentUser);
+        }   
         
-        currentUser = new User(emailEl.value);
-        users.push(currentUser);
+        console.log(currentUser);
+      
         console.log(users);
         currentEmailEl.textContent = emailEl.value;
        

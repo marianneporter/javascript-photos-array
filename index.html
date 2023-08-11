@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/index.css">
+    <title>Javascript Array</title>
+</head>
+<body> 
+    <header class="header">      
+        <h1>Create a Photo Collection</h1>
+        <div class="email-div"> 
+            <input type="text"
+             class="email"
+             placeholder="Please enter your email">
+            <button class="add-change-email-btn">Add Email</button>
+            <p class="email-error-message"></p>
+        </div>
+    </header>  
+    <main class="main">
+        <div class="random-photo-frame">
+            <img src=""
+                     alt=""
+                     class="random-photo">
+            <div class="btn-group">
+                <button class="add-photo-btn">Add to Collection</button>
+                <button class="get-new-photo-btn">Next</button>
+            </div>
+        </div>
+        <div class="photo-collection">
+            <div class="heading">
+                <h3>Your selected photos </h3>
+                <h4>email: <span class="current-email"></span> </h4>
+                <p>Your collection is empty! Select the current photo or click next to choose another....</p>
+                <div class="selected-photos">
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/api-access.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

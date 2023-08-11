@@ -1,0 +1,74 @@
+.header {
+    padding: 2rem;
+    text-align: center;
+
+
+    .email {
+        height: 2.5rem;
+        width: 20rem;
+        margin-top: 1rem;
+        padding-left: 1rem;
+    }
+
+    .add-change-email-btn {
+        height: 2.5rem;
+        width: 10rem;
+    }
+}
+
+
+.main {
+    margin-top: 2rem;
+    margin-left: 10rem;
+    display: flex;
+    gap: 2rem;
+
+    .random-photo-frame, .photo-collection {
+        width: 40%;
+        min-height: 40rem;
+        border: 0.25rem solid purple;
+    }
+
+ }
+
+ .main .random-photo-frame {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+
+    .random-photo {
+        max-width: 40rem;
+        height: auto;
+    }
+
+    .btn-group {
+        display: flex;
+        gap: 2rem;
+        height: 5rem;
+        padding: 4rem 0 2rem 0;
+    }
+    
+ }
+
+ .random-photo-frame .btn-group {
+    .add-photo-btn, .get-new-photo-btn {
+        height: 2.5rem;
+        width: 10rem;        
+    }
+ }
+
+ .photo-collection .photo-box-img {
+    max-width: 15rem;
+    max-height: auto;
+ }
+
+ .email-error-message {
+    padding-top: 1rem;
+    color: red;
+ } 
+
+
+ 
+ 

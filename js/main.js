@@ -76,3 +76,23 @@ function validateEmail(email) {
 
 }
 
+function outputHeading(email=null, photosPresent=false) {
+
+    if (!email) {
+        return `<h3>Please enter you email to start your collection</h3>`;
+    }
+   
+    let outputHeading =    `
+            <h3>Your selected photos </h3>
+            <h4>email: <span class="current-email">${email}</span> </h4>
+             
+        `;
+    if (!photosPresent) {
+        outputHeading += 
+           `<p>Your collection is empty! Select the current photo or click next to choose another....</p>`
+    }
+
+    return outputHeading;
+
+}
+

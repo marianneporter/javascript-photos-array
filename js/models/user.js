@@ -1,7 +1,3 @@
-const collection = [];
-
-const users = [];
-
 class User {
     constructor(email) {
         this.email = email;

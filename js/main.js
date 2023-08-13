@@ -6,56 +6,45 @@ const selectedPhotos = document.querySelector('.selected-photos');
 const addChangeEmailBtn = document.querySelector('.add-change-email-btn');
 const emailEl = document.querySelector('.email');
 const emailErrorMsg = document.querySelector(".email-error-message");
-let currentUser = null;
 const currentEmailEl = document.querySelector(".current-email");
 
+const apiService = new ApiService();
+const appStateService = new AppStateService();
 
-fetchRandomPhoto()
-    .then(res => {     
-     //   console.log(res.urls.regular);
-   //     randomPhotoElement.src = res.urls.regular;
-   //     console.log(res);
+apiService.fetchRandomPhoto()
+    .then(res => {
         randomPhotoElement.src = res;
-    });
-
+    })
 
 addPhotoBtn.addEventListener('click', () => {
-    console.log('add button clicked');
-    createPhotoCollectionElement();
+    console.log(emailEl.value);
+
+    if (!emailEl.value) {
+        emailErrorMsg.textContent = "Please Add an Email to Start Your Collection";
+        return;
+    }
+
+    appStateService.addPhotoForCurrentUser(randomPhotoElement.src);
+    addPhotoCollectionElement(randomPhotoElement.src);
 });
 
-getNewPhotoBtn.addEventListener('click', () => {
-    console.log('in get new photo handler');
-    fetchRandomPhoto()
-    .then(res => {     
-     //   console.log(res.urls.regular);
-   //     randomPhotoElement.src = res.urls.regular;
-        console.log(res);
+getNewPhotoBtn.addEventListener('click', () => {   
+    apiService.fetchRandomPhoto()
+    .then(res => {          
         randomPhotoElement.src = res;
     });
 });
 
 addChangeEmailBtn.addEventListener('click', () => {
-    console.log('add change email button clicked');
-    console.log('email is ' + emailEl.value);
 
     let validateCheck = validateEmail(emailEl.value);
 
-    if (validateCheck.valid) {  
-        console.log('clearing selected photos');
+    if (validateCheck.valid) {      
      
         selectedPhotos.innerHTML="";
 
-        currentUser = users.find(el => el.email === emailEl.value);
-
-        if (!currentUser) {
-            currentUser = new User(emailEl.value);
-            users.push(currentUser);
-        }   
-        
-        console.log(currentUser);
-      
-        console.log(users);
+        let existingPhotos = appStateService.getOrAddUser(emailEl.value);
+        existingPhotos.forEach(p => addPhotoCollectionElement(p));
         currentEmailEl.textContent = emailEl.value;
        
     } else {
@@ -63,34 +52,18 @@ addChangeEmailBtn.addEventListener('click', () => {
     }
 });
 
-emailEl.addEventListener('input', () => {
-    console.log('inpit');
+emailEl.addEventListener('input', () => {    
     emailErrorMsg.textContent = "";
 });
 
-
-
-
-function createPhotoCollectionElement() {
-
-    currentUser.addPhoto(randomPhotoElement.src);
-
-    console.log(users);
+function addPhotoCollectionElement(photoUrl) {
     let photoBox = document.createElement('div');
     let image = document.createElement('img');
-    image.src = randomPhotoElement.src;
+    image.src = photoUrl;
     image.classList.add('photo-box-img');
-
     photoBox.appendChild(image);
-    selectedPhotos.appendChild(photoBox);
-    
+    selectedPhotos.appendChild(photoBox);    
 }
-
-// function clearDisplayPhotos() {
-//     let elementsToRemove = selectedPhotos.querySelectorAll("")
-// }
-
-
 
 function validateEmail(email) {
     if (email) {

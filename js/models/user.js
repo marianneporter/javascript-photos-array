@@ -7,5 +7,6 @@ class User {
     addPhoto(photoUrl) {
         this.photos.push(photoUrl);
     }
+
 }
 

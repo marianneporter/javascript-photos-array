@@ -21,12 +21,17 @@ class AppStateService {
 
         this.addNewUser(email);
 
-        return [];      
-      
+        return [];       
     }
 
     addPhotoForCurrentUser(photo) {
         this.currentUser.addPhoto(photo);
+    }
+
+    currentUserPhotoCount() {     
+      
+        return this.currentUser.photos.length;
+    
     }
 }
 

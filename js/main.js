@@ -27,11 +27,13 @@ addPhotoBtn.addEventListener('click', () => {
         emailErrorMsg.textContent = "Please Add an Email to Start Your Collection";
         return;
     }  
+
+    photoCollectionHeading.textContent = "";
     appStateService.addPhotoForCurrentUser(randomPhotoElement.src);   
 
-    if (appStateService.currentUserPhotoCount() === 1) {      
-        photoCollectionHeading.innerHTML =  outputHeading();       
-    }
+    // if (appStateService.currentUserPhotoCount() === 1) {      
+    //     photoCollectionHeading.innerHTML =  outputHeading();       
+    // }
 
     addPhotoCollectionElement(randomPhotoElement.src);
 
@@ -67,7 +69,7 @@ addEmailBtn.addEventListener('click', () => {
     let existingPhotos = appStateService.getOrAddUser(emailEl.value);
 
     if (existingPhotos.length == 0) {
-        selectedPhotos.textContent = `Your collection is empty! Select the current photo
+        photoCollectionHeading.textContent = `Your collection is empty! Select the current photo
                                               or click next to choose another....`;
     } else {
         existingPhotos.forEach(p => addPhotoCollectionElement(p));        

@@ -1,22 +1,67 @@
+$control-height: 2.5rem;
+
+@mixin btn {
+    height: 2.5rem;
+    border: none;
+    border-radius: 0.25rem;
+    width: 100%;
+    font-weight: 700;     
+}
+
+@mixin primary-btn {
+    background-color: map-get($colors, 'dark-pink');
+    color: white;
+}
+
+@mixin accent-btn {
+    background-color: map-get($colors, 'blue');
+    color: white;
+}
+
+@mixin secondary-btn {
+    background-color: map-get($colors, 'dark-grey');
+    color: white;
+}
+
+.container {
+    padding: 1rem;
+}
+
+
 .header {
-    padding: 2rem;
+    width: 100%;
+  
     text-align: center;
+    color:  map-get($colors, 'dark-pink');
+   
 
-
+    // scss displayed when the user is required to enter an email
     .email-input {
-        height: 2.5rem;
-        width: 20rem;
+        height: $control-height;
+        width: 100%;
         margin-top: 1rem;
         padding-left: 1rem;
+        border-radius: 0.25rem;
     }
 
     .add-email-btn, .change-email-btn {
-        height: 2.5rem;
-        width: 10rem;
+        @include btn;
+        @include accent-btn;        
     }
 
+    .add-email-btn {
+        margin-top: 0.75rem;       
+    }
+
+    .change-email-btn {
+        margin-top: 0.75rem;
+        margin-bottom: 0.75rem;
+    }
+
+    // scss to display an email that has been selected
     .current-email {
         display: none;
+        margin-top: 0.75rem;
     }
 
     .current-email-content {
@@ -25,57 +70,109 @@
 }
 
 
-.main {
-    margin-top: 2rem;
-    margin-left: 10rem;
-    display: flex;
-    gap: 2rem;
-
-    .random-photo-frame, .photo-collection {
-        width: 40%;
-        min-height: 40rem;
-        border: 0.25rem solid purple;
-    }
-
- }
-
- .main .random-photo-frame {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-
-    .random-photo {
-        max-width: 40rem;
-        height: auto;
-    }
-
-    .btn-group {
-        display: flex;
-        gap: 2rem;
-        height: 5rem;
-        padding: 4rem 0 2rem 0;
-    }
-    
- }
-
- .random-photo-frame .btn-group {
-    .add-photo-btn, .get-new-photo-btn {
-        height: 2.5rem;
-        width: 10rem;        
-    }
- }
-
- .photo-collection .photo-box-img {
-    max-width: 15rem;
-    max-height: auto;
- }
-
- .email-error-message {
+.email-error-message {
     padding-top: 1rem;
     color: red;
  } 
+
+ //******************************************************//
+ // scss for main                                        //
+ //******************************************************//
+
+ .main {
+
+   
+    .random-photo-frame, .photo-collection {
+        width: 100%;
+    }
+ }
+
+ .main .random-photo-frame {
+    .random-photo {
+        max-width: 15.5rem;
+        height: auto;
+        margin: 0 auto;
+        display: block;
+    }
+ }
+
+ 
+
+ .random-photo-frame .add-photo-btn {
+    @include btn;
+    @include primary-btn;
+    margin-top: 1rem;
+ }
+
+ .random-photo-frame .get-new-photo-btn {
+    @include btn;
+    @include accent-btn;
+    margin-top: 1rem;      
+ }
+
+ .separator {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    height: 0.1rem;
+    background-color: map-get($colors, 'dark-grey');
+ }
+
+  .photo-collection .photo-box-img {
+    max-width: 15.5rem;
+    max-height: auto;
+ }
+
+ 
+ 
+
+
+// .main {
+//     margin-top: 2rem;
+//  //   margin-left: 10rem;
+//     display: flex;
+//     gap: 2rem;
+
+//     .random-photo-frame, .photo-collection {
+//         width: 40%;
+//         min-height: 40rem;
+//         border: 0.25rem solid purple;
+//     }
+
+//  }
+
+//  .main .random-photo-frame {
+//     display: flex;
+//     flex-direction: column;
+//     align-items: center;
+//     justify-content: center;
+
+
+//     .random-photo {
+//         max-width: 40rem;
+//         height: auto;
+//     }
+
+//     .btn-group {
+//         display: flex;
+//         gap: 2rem;
+//         height: 5rem;
+//         padding: 4rem 0 2rem 0;
+//     }
+    
+//  }
+
+//  .random-photo-frame .btn-group {
+//     .add-photo-btn, .get-new-photo-btn {
+//         height: 2.5rem;
+//         width: 10rem;        
+//     }
+//  }
+
+//  .photo-collection .photo-box-img {
+//     max-width: 15rem;
+//     max-height: auto;
+//  }
+
 
 
  

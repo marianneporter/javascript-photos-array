@@ -8,40 +8,42 @@
     <title>Javascript Array</title>
 </head>
 <body> 
-    <header class="header">      
-        <h1>Create a Photo Collection</h1>
-        <div class="enter-email"> 
-            <input type="text"
-                   class="email-input"
-                   placeholder="Please enter your email">
-            <button class="add-email-btn">Add Email</button>
-            <p class="email-error-message"></p>
-        </div>
-        <div class="current-email"> 
-            <h3 class="current-email-content">Current Email: <span class="current-selected-email"></span></h3>
-            <button class="change-email-btn">Change Email</button>
-        </div>       
-    </header>  
-    <main class="main">
-        <div class="random-photo-frame">
-            <img src=""
-                     alt=""
-                     class="random-photo">
-            <div class="btn-group">
-                <button class="add-photo-btn">Add to Collection</button>
-                <button class="get-new-photo-btn">Next</button>
+    <div class="container">
+        <header class="header">      
+            <h1>Create a Photo Collection</h1>
+            <div class="enter-email"> 
+                <input type="text"
+                       class="email-input"
+                       placeholder="Please enter your email">
+                <button class="add-email-btn">Add Email</button>
+                <p class="email-error-message"></p>
             </div>
-        </div>
-        <div class="photo-collection">
-            <div class="heading">
-               
+            <div class="current-email"> 
+                <h3 class="current-email-content">Current Email: <span class="current-selected-email"></span></h3>
+                <button class="change-email-btn">Change Email</button>
+            </div>       
+        </header>  
+        <main class="main">
+            <div class="random-photo-frame">
+                <img src=""
+                         alt=""
+                         class="random-photo">
+                <div class="btn-group">
+                    <button class="add-photo-btn">Add to Collection</button>
+                    <button class="get-new-photo-btn">Next</button>
+                </div>
+            </div>
+            <div class="separator"></div>
+            <div class="photo-collection">
+                <div class="heading">       
+                </div>
+                <div class="selected-photos">
+                </div>
+    
+            </div>
+        </main>
+    </div>
 
-            </div>
-            <div class="selected-photos">
-            </div>
-
-        </div>
-    </main>
 
     <script src="js/models/user.js"></script>
     <script src="js/services/api-service.js"></script>  

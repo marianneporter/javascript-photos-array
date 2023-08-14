@@ -10,13 +10,17 @@
 <body> 
     <header class="header">      
         <h1>Create a Photo Collection</h1>
-        <div class="email-div"> 
+        <div class="enter-email"> 
             <input type="text"
-             class="email"
-             placeholder="Please enter your email">
-            <button class="add-change-email-btn">Add Email</button>
+                   class="email-input"
+                   placeholder="Please enter your email">
+            <button class="add-email-btn">Add Email</button>
             <p class="email-error-message"></p>
         </div>
+        <div class="current-email"> 
+            <h3 class="current-email-content">Current Email: <span class="current-selected-email"></span></h3>
+            <button class="change-email-btn">Change Email</button>
+        </div>       
     </header>  
     <main class="main">
         <div class="random-photo-frame">
@@ -30,7 +34,7 @@
         </div>
         <div class="photo-collection">
             <div class="heading">
-                <h3>Please enter you email to start your collection</h3>
+               
 
             </div>
             <div class="selected-photos">

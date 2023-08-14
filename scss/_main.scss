@@ -3,16 +3,24 @@
     text-align: center;
 
 
-    .email {
+    .email-input {
         height: 2.5rem;
         width: 20rem;
         margin-top: 1rem;
         padding-left: 1rem;
     }
 
-    .add-change-email-btn {
+    .add-email-btn, .change-email-btn {
         height: 2.5rem;
         width: 10rem;
+    }
+
+    .current-email {
+        display: none;
+    }
+
+    .current-email-content {
+        display: inline-block;
     }
 }
 

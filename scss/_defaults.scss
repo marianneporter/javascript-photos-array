@@ -1,0 +1,24 @@
+@font-face {
+    font-family: 'Rubik Regular';
+    src: url("/assets/fonts/Rubik-Regular.ttf") format("truetype");
+}
+
+body {
+    overflow-x: hidden;
+    font-family: 'Rubik Regular'; 
+}
+
+
+input, textarea {
+    font-family: 'Rubik Regular'; 
+}
+
+textarea::placeholder, input::placeholder {
+    font-family: 'Rubik Regular'; 
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}

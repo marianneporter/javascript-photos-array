@@ -4,8 +4,12 @@ const getNewPhotoBtn = document.querySelector('.get-new-photo-btn')
 const photoCollection = document.querySelector('.photo-collection');
 const photoCollectionHeading = document.querySelector('.photo-collection .heading');
 const selectedPhotos = document.querySelector('.selected-photos');
-const addChangeEmailBtn = document.querySelector('.add-change-email-btn');
-const emailEl = document.querySelector('.email');
+const addEmailBtn = document.querySelector('.add-email-btn');
+const changeEmailBtn = document.querySelector('.change-email-btn');
+const currentSelectedEmail = document.querySelector('.current-selected-email');
+const enterEmail = document.querySelector('.enter-email');
+const currentEmail = document.querySelector('.current-email');
+const emailEl = document.querySelector('.email-input');
 const emailErrorMsg = document.querySelector(".email-error-message");
 
 const apiService = new ApiService();
@@ -25,12 +29,17 @@ addPhotoBtn.addEventListener('click', () => {
     }  
     appStateService.addPhotoForCurrentUser(randomPhotoElement.src);   
 
-    if (appStateService.currentUserPhotoCount() === 1) {
-        console.log('going to change html count ===1');
+    if (appStateService.currentUserPhotoCount() === 1) {      
         photoCollectionHeading.innerHTML =  outputHeading();       
     }
 
     addPhotoCollectionElement(randomPhotoElement.src);
+
+    apiService.fetchRandomPhoto()
+    .then(res => {
+        randomPhotoElement.src = res;
+    })
+
 });
 
 getNewPhotoBtn.addEventListener('click', () => {   
@@ -40,19 +49,38 @@ getNewPhotoBtn.addEventListener('click', () => {
     });
 });
 
-addChangeEmailBtn.addEventListener('click', () => {
+addEmailBtn.addEventListener('click', () => {
 
     let validateCheck = validateEmail(emailEl.value);
-    if (validateCheck.valid) {           
-        addChangeEmailBtn.innerText="Change Email";     
-        selectedPhotos.innerHTML="";
-        let existingPhotos = appStateService.getOrAddUser(emailEl.value);
-        photoCollectionHeading.innerHTML =  outputHeading();
-               existingPhotos.forEach(p => addPhotoCollectionElement(p));             
-    } else {
+
+    if (!validateCheck.valid) {
         emailErrorMsg.textContent = validateCheck.message;
+        return;
     }
+
+    //change heading to include selected email and invite user to change it
+    enterEmail.style.display = "none";
+    currentEmail.style.display = "block";
+    currentSelectedEmail.textContent =  emailEl.value;
+
+    // valid email display existing photos or empty collection with message 
+    let existingPhotos = appStateService.getOrAddUser(emailEl.value);
+
+    if (existingPhotos.length == 0) {
+        selectedPhotos.textContent = `Your collection is empty! Select the current photo
+                                              or click next to choose another....`;
+    } else {
+        existingPhotos.forEach(p => addPhotoCollectionElement(p));        
+    }         
+  
 });
+
+changeEmailBtn.addEventListener('click', () => {
+    enterEmail.style.display = "block";
+    currentEmail.style.display = "none";
+    selectedPhotos.innerHTML = "";
+    emailEl.value = "";
+})
 
 emailEl.addEventListener('input', () => {    
     emailErrorMsg.textContent = "";
@@ -78,23 +106,23 @@ function validateEmail(email) {
     return { valid: true, message: null };   
 }
 
-function outputHeading() { 
+// function outputHeading() { 
     
-    if (!appStateService.currentUser) {
-        return `<h3>Please enter you email to start your collection</h3>`;
-    }
+//     if (!appStateService.currentUser) {
+//         return `<h3>Please enter your email to start your collection</h3>`;
+//     }
    
-    let outputHeading =    `
-            <h3>Your selected photos </h3>
-            <h4>email: <span class="current-email">${appStateService.currentUser.email}</span></h4>             
-        `;
+//     let outputHeading =    `
+//             <h3>Your selected photos </h3>
+//             <h4>email: <span class="current-email">${appStateService.currentUser.email}</span></h4>             
+//         `;
 
-    if (appStateService.currentUserPhotoCount() ===  0) {
-        outputHeading += 
-           `<p>Your collection is empty! Select the current photo or click next to choose another....</p>`
-    }
+//     if (appStateService.currentUserPhotoCount() ===  0) {
+//         outputHeading += 
+//            `<p>Your collection is empty! Select the current photo or click next to choose another....</p>`
+//     }
 
-    return outputHeading;
+//     return outputHeading;
 
-}
+// }
 

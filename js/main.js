@@ -28,7 +28,15 @@ addPhotoBtn.addEventListener('click', () => {
         return;
     }  
 
-    photoCollectionHeading.textContent = "";
+
+    if (window.innerWidth < 768) {
+        console.log('changing photo collection text content to ...');
+        photoCollectionHeading.textContent = "Your Collection...";
+    } else {
+        console.log('changing photo collection text content to just text');
+        photoCollectionHeading.textContent = "Your Collection";
+    }
+   
     appStateService.addPhotoForCurrentUser(randomPhotoElement.src);   
 
     // if (appStateService.currentUserPhotoCount() === 1) {      
@@ -90,6 +98,7 @@ emailEl.addEventListener('input', () => {
 
 function addPhotoCollectionElement(photoUrl) {
     let photoBox = document.createElement('div');
+    photoBox.classList.add('photo-box');
     let image = document.createElement('img');
     image.src = photoUrl;
     image.classList.add('photo-box-img');

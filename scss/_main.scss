@@ -18,9 +18,21 @@ $control-height: 2.5rem;
     color: white;
 }
 
+@mixin primary-btn-outline {
+    background-color: white;
+    border: 0.1rem solid map-get($colors, 'dark-pink');
+    color: map-get($colors, 'dark-pink');
+}
+
 @mixin accent-btn {
     background-color: map-get($colors, 'blue');
     color: white;
+}
+
+@mixin accent-btn-outline {
+    background-color: white;
+    border: 0.1rem solid map-get($colors, 'blue');
+    color: map-get($colors, 'blue');
 }
 
 @mixin secondary-btn {
@@ -40,8 +52,7 @@ $control-height: 2.5rem;
 
     @include xl {
         width: 100%;
-        padding: 0;
-        
+        padding: 0;        
     }
 }
 
@@ -60,56 +71,79 @@ $control-height: 2.5rem;
 
     // scss displayed when the user is required to enter an email
     .email-controls {
-        width: 100%;
-
-        @include lg {
+        width: 100%;       
+      //  background-color: orange;
+        @include md {
             display: flex;
+            justify-content: space-around;
+         
             gap: 1rem;
-            width: 80%;
+       //     width: 80%;
             margin: 0 auto;
-        }      
+        }    
+        
+        @include xl {
+            width: 50rem;
+        }
     }
 
     .email-input {
         height: $control-height;
-        width: 80%;       
+        width: 100%;       
         padding-left: 1rem;
         border-radius: 0.25rem;
+        border: none;
+        outline: 1px solid map-get($colors, 'mid-pink');
         display: block;
         margin: 1rem auto 0;
 
+        @include md {
+            margin-top: 0.75rem;
+        }
+
         @include xl {
-            width: 30rem;
+           flex: 1
+        }
+
+        &:focus {
+            border: 1px solid map-get($colors, 'dark=pink');
         }
     }
 
     .change-email-btn {
         @include btn;
-        @include accent-btn;        
+        @include primary-btn; 
+        margin-top: 0.75rem;
+        margin-bottom: 0.75rem;
+
+        @include md {
+            width: 8rem;
+        }
+
     }
 
     .add-email-btn {
         @include btn;
-        @include accent-btn;   
+        @include primary-btn; 
 
         margin-top: 0.75rem;    
-        width: 80%;  
+        width: 100%;  
+
+        @include md {
+            width: 10rem;
+        }
         
         @include lg {
             margin-top: 1rem;
         }
 
         @include xl {
-            width: 5rem;
+          width: 12rem;
         }
-
         
     }
 
-    .change-email-btn {
-        margin-top: 0.75rem;
-        margin-bottom: 0.75rem;
-    }
+  
 
     // scss to display an email that has been selected
     .current-email {
@@ -128,24 +162,23 @@ $control-height: 2.5rem;
     color: red;
  } 
 
- //******************************************************//
- // scss for main                                        //
- //******************************************************//
-
  
- /******************************************************/
- /* random photo and selection area                    //
- /******************************************************/
-.main {
-    display: flex;
-    padding: 0.5rem;
-    height: calc(100vh - 10rem);
-    gap: 2rem;
+ 
+ /*************************************************************/
+ /* main div holds random photo area and the photo collection */
+ /* random photo and selection area                           */
+ /*************************************************************/
 
-}
+// media query to set up 2 column flex one side for the random photo
+// the other for the photo collection.  this format is for xl screens 
+// only
 
 @include xl {
     .main {
+        display: flex;
+        padding: 0.5rem;
+        height: calc(100vh - 10rem);
+        gap: 2rem;
         padding: 5rem 10rem;
         background-color: map-get($colors, dark-grey)
     }
@@ -155,24 +188,27 @@ $control-height: 2.5rem;
         display: flex;
         justify-content: center;
         align-items: center;
-
         background-color: white;
+      
     }
 
     .random-photo-frame-outer {
         width: 40%;
+ 
     }
     
     .photo-collection-frame-outer {
-        width: 60%;
+        width: 60%;      
     }
     
 }
 
  .main .random-photo-frame {
+    width: 100%;
 
-    width: 80%;     
+  //  width: 80%;     
     margin: 0 auto;
+    
 
     // @include xl {
 
@@ -189,6 +225,10 @@ $control-height: 2.5rem;
         @include lg {
             max-width: 100%;
             width: 100%;
+        }
+
+        @include xl {
+            max-width: 80%;
         }
     }
  } 
@@ -230,7 +270,7 @@ $control-height: 2.5rem;
     background-color: map-get($colors, 'dark-grey');
 
     @include md {
-        margin-top: 2rem;
+          margin-top: 2rem;
     }
 
     @include xl {
@@ -241,13 +281,24 @@ $control-height: 2.5rem;
 /****************************************************************/
 /*  selected photos area                                        */
 /****************************************************************/
- .main .photo-collection {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 80%;     
+
+
+.main .photo-collection {
+    // display: flex;
+    // flex-direction: column;
+    // align-items: center;
+    width: 100%;     
     margin: 0 auto;
+    
+   // overflow: auto;   
+  //  background-color: lightyellow;
+    margin-top: -2rem;
+
+    
+    
  }
+
+  
 
  .photo-collection .heading {
     width: 100%;
@@ -257,32 +308,45 @@ $control-height: 2.5rem;
     padding-bottom: 0.75rem;
     display: flex;
     justify-content: center;
+  //  background-color: lightgreen;
+
+    .init-message-xl-screens {
+        display: none;
+
+        @include xl {
+            display: block;
+        }
+    }
 
     @include md {
         width: 80%;       
     }    
  }
 
+ //set up flex container for md, lg and xl screens for the photo collection
  .photo-collection .selected-photos {
     margin: 0 auto;
   
-    @include lg {
-  
+    @include md {  
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
         gap: 1rem;
-      
+        height: 20rem;
+        overflow-y: auto;      
     }
  }
 
+//flex item for the above flex container
  .photo-collection .selected-photos .photo-box {
-    @include lg {
+    margin-top: 1rem;
+
+    @include md {
        width: 40%;       
     }
 
     @include xl {
-        width: 100%;
+        flex-basis: 22%;
     }
  }
 

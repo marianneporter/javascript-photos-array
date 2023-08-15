@@ -30,39 +30,80 @@ $control-height: 2.5rem;
 
 .container {
     padding: 1rem;
+   
 
     @include md {
         width: 80%;
         margin: 0 auto;
         padding: 2rem 1rem;
     }
- 
+
+    @include xl {
+        width: 100%;
+        padding: 0;
+        
+    }
 }
 
 
 .header {
     width: 100%;
-  
+   
+    margin: 0 auto;
     text-align: center;
     color:  map-get($colors, 'dark-pink');
-   
 
-    // scss displayed when the user is required to enter an email
-    .email-input {
-        height: $control-height;
-        width: 80%;
-        margin-top: 1rem;
-        padding-left: 1rem;
-        border-radius: 0.25rem;
+    @include xl {
+        height: 10rem;
+        padding-top: 1rem;
     }
 
-    .add-email-btn, .change-email-btn {
+    // scss displayed when the user is required to enter an email
+    .email-controls {
+        width: 100%;
+
+        @include lg {
+            display: flex;
+            gap: 1rem;
+            width: 80%;
+            margin: 0 auto;
+        }      
+    }
+
+    .email-input {
+        height: $control-height;
+        width: 80%;       
+        padding-left: 1rem;
+        border-radius: 0.25rem;
+        display: block;
+        margin: 1rem auto 0;
+
+        @include xl {
+            width: 30rem;
+        }
+    }
+
+    .change-email-btn {
         @include btn;
         @include accent-btn;        
     }
 
     .add-email-btn {
-        margin-top: 0.75rem;       
+        @include btn;
+        @include accent-btn;   
+
+        margin-top: 0.75rem;    
+        width: 80%;  
+        
+        @include lg {
+            margin-top: 1rem;
+        }
+
+        @include xl {
+            width: 5rem;
+        }
+
+        
     }
 
     .change-email-btn {
@@ -83,7 +124,7 @@ $control-height: 2.5rem;
 
 
 .email-error-message {
-    padding-top: 1rem;
+    padding-top: 0.25rem;
     color: red;
  } 
 
@@ -91,25 +132,58 @@ $control-height: 2.5rem;
  // scss for main                                        //
  //******************************************************//
 
-
- .main {   
-    .random-photo-frame, .photo-collection {
-        width: 80%;     
-        margin: 0 auto;
-    }
- }
-
- 
  
  /******************************************************/
  /* random photo and selection area                    //
  /******************************************************/
+.main {
+    display: flex;
+    padding: 0.5rem;
+    height: calc(100vh - 10rem);
+    gap: 2rem;
+
+}
+
+@include xl {
+    .main {
+        padding: 5rem 10rem;
+        background-color: map-get($colors, dark-grey)
+    }
+
+    .random-photo-frame-outer, .photo-collection-frame-outer {
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        background-color: white;
+    }
+
+    .random-photo-frame-outer {
+        width: 40%;
+    }
+    
+    .photo-collection-frame-outer {
+        width: 60%;
+    }
+    
+}
+
  .main .random-photo-frame {
+
+    width: 80%;     
+    margin: 0 auto;
+
+    // @include xl {
+
+    //     width: 40rem;;
+    // }
+
  
     .random-photo {
         max-width: 100%;
         height: auto;
-        margin: 0 auto;
+        margin: 1rem auto;
         display: block;
 
         @include lg {
@@ -158,15 +232,21 @@ $control-height: 2.5rem;
     @include md {
         margin-top: 2rem;
     }
+
+    @include xl {
+        display: none;
+    }
  } 
 
 /****************************************************************/
 /*  selected photos area                                        */
 /****************************************************************/
- .photo-collection {
+ .main .photo-collection {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 80%;     
+    margin: 0 auto;
  }
 
  .photo-collection .heading {
@@ -199,6 +279,10 @@ $control-height: 2.5rem;
  .photo-collection .selected-photos .photo-box {
     @include lg {
        width: 40%;       
+    }
+
+    @include xl {
+        width: 100%;
     }
  }
 

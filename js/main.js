@@ -84,6 +84,7 @@ changeEmailBtn.addEventListener('click', () => {
     currentEmail.style.display = "none";
     selectedPhotos.innerHTML = "";
     emailEl.value = "";
+    addMsgToCollectionHeading("Add a new email and see your photo selections for it here!");
 })
 
 emailEl.addEventListener('input', () => {    

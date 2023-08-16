@@ -31,10 +31,12 @@ addPhotoBtn.addEventListener('click', () => {
 
     if (window.innerWidth < 768) {
         console.log('changing photo collection text content to ...');
-        photoCollectionHeading.textContent = "Your Collection...";
+     //   photoCollectionHeading.textContent = "Your Collection...";
+        addMsgToCollectionHeading("Your Collection...")
     } else {
         console.log('changing photo collection text content to just text');
-        photoCollectionHeading.textContent = "Your Collection";
+   //     photoCollectionHeading.textContent = "Your Collection";
+        addMsgToCollectionHeading("Your Collection")
     }
    
     appStateService.addPhotoForCurrentUser(randomPhotoElement.src);   
@@ -77,8 +79,10 @@ addEmailBtn.addEventListener('click', () => {
     let existingPhotos = appStateService.getOrAddUser(emailEl.value);
 
     if (existingPhotos.length == 0) {
-        photoCollectionHeading.textContent = `Your collection is empty! Select the current photo
-                                              or click next to choose another....`;
+        // photoCollectionHeading.textContent = `Your collection is empty! Select the current photo
+        //                                       or click next to choose another....`;
+        addMsgToCollectionHeading(`Your collection is empty! Select the current photo
+                                                             or click next to choose another....`);
     } else {
         existingPhotos.forEach(p => addPhotoCollectionElement(p));        
     }         
@@ -115,6 +119,14 @@ function validateEmail(email) {
         return { valid: false, message: 'Please enter a valid email to start your collection'}
     }
     return { valid: true, message: null };   
+}
+
+function addMsgToCollectionHeading(msg) {
+    photoCollectionHeading.innerHTML = "";
+    let headingPara = document.createElement('p');
+    headingPara.textContent = msg;
+    headingPara.classList.add('dynamic-message');
+    photoCollectionHeading.appendChild(headingPara);
 }
 
 // function outputHeading() { 

@@ -71,14 +71,11 @@ $control-height: 2.5rem;
 
     // scss displayed when the user is required to enter an email
     .email-controls {
-        width: 100%;       
-      //  background-color: orange;
+        width: 100%;        
         @include md {
             display: flex;
-            justify-content: space-around;
-         
-            gap: 1rem;
-       //     width: 80%;
+            justify-content: space-around;         
+            gap: 1rem;      
             margin: 0 auto;
         }    
         
@@ -264,8 +261,8 @@ $control-height: 2.5rem;
  }
 
  .separator {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+    margin-top: 2rem;
+    margin-bottom: 3rem;
     height: 0.1rem;
     background-color: map-get($colors, 'dark-grey');
 
@@ -307,20 +304,25 @@ $control-height: 2.5rem;
     padding-top: 0.75rem;
     padding-bottom: 0.75rem;
     display: flex;
-    justify-content: center;
-  //  background-color: lightgreen;
-
+  //  justify-content: center;
+  
     .init-message-xl-screens {
         display: none;
 
         @include xl {
             display: block;
         }
-    }
+    } 
+ }
+
+ .photo-collection .heading .dynamic-message {
+    margin-left: 0;
+    background-color: pink;
 
     @include md {
-        width: 80%;       
-    }    
+        margin: 0 auto;
+      
+    }
  }
 
  //set up flex container for md, lg and xl screens for the photo collection
@@ -364,6 +366,8 @@ $control-height: 2.5rem;
         width: 100%;
     }
  }
+
+
 
  
  

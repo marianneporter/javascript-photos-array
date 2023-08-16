@@ -29,21 +29,13 @@ addPhotoBtn.addEventListener('click', () => {
     }  
 
 
-    if (window.innerWidth < 768) {
-        console.log('changing photo collection text content to ...');
-     //   photoCollectionHeading.textContent = "Your Collection...";
+    if (window.innerWidth < 768) { 
         addMsgToCollectionHeading("Your Collection...")
-    } else {
-        console.log('changing photo collection text content to just text');
-   //     photoCollectionHeading.textContent = "Your Collection";
+    } else { 
         addMsgToCollectionHeading("Your Collection")
     }
    
     appStateService.addPhotoForCurrentUser(randomPhotoElement.src);   
-
-    // if (appStateService.currentUserPhotoCount() === 1) {      
-    //     photoCollectionHeading.innerHTML =  outputHeading();       
-    // }
 
     addPhotoCollectionElement(randomPhotoElement.src);
 
@@ -78,9 +70,7 @@ addEmailBtn.addEventListener('click', () => {
     // valid email display existing photos or empty collection with message 
     let existingPhotos = appStateService.getOrAddUser(emailEl.value);
 
-    if (existingPhotos.length == 0) {
-        // photoCollectionHeading.textContent = `Your collection is empty! Select the current photo
-        //                                       or click next to choose another....`;
+    if (existingPhotos.length == 0) {   
         addMsgToCollectionHeading(`Your collection is empty! Select the current photo
                                                              or click next to choose another....`);
     } else {
@@ -128,24 +118,3 @@ function addMsgToCollectionHeading(msg) {
     headingPara.classList.add('dynamic-message');
     photoCollectionHeading.appendChild(headingPara);
 }
-
-// function outputHeading() { 
-    
-//     if (!appStateService.currentUser) {
-//         return `<h3>Please enter your email to start your collection</h3>`;
-//     }
-   
-//     let outputHeading =    `
-//             <h3>Your selected photos </h3>
-//             <h4>email: <span class="current-email">${appStateService.currentUser.email}</span></h4>             
-//         `;
-
-//     if (appStateService.currentUserPhotoCount() ===  0) {
-//         outputHeading += 
-//            `<p>Your collection is empty! Select the current photo or click next to choose another....</p>`
-//     }
-
-//     return outputHeading;
-
-// }
-

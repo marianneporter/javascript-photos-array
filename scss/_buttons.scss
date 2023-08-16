@@ -1,0 +1,38 @@
+@mixin btn {
+    height: 2.5rem;
+    border: none;
+    border-radius: 0.25rem;
+    width: 100%;
+    font-weight: 700;    
+    
+    @include md {
+        width: 12.5rem;     
+    }
+}
+
+@mixin primary-btn {
+    background-color: map-get($colors, 'dark-pink');
+    color: white;
+}
+
+@mixin primary-btn-outline {
+    background-color: white;
+    border: 0.1rem solid map-get($colors, 'dark-pink');
+    color: map-get($colors, 'dark-pink');
+}
+
+@mixin accent-btn {
+    background-color: map-get($colors, 'blue');
+    color: white;
+}
+
+@mixin accent-btn-outline {
+    background-color: white;
+    border: 0.1rem solid map-get($colors, 'blue');
+    color: map-get($colors, 'blue');
+}
+
+@mixin secondary-btn {
+    background-color: map-get($colors, 'dark-grey');
+    color: white;
+}

@@ -131,12 +131,6 @@ $control-height: 2.5rem;
                 }
 
 
-
-                // display: block;
-                // @include sm {
-                //     display: inline;
-                // }
-
                 @include md {
                     font-size: 1.1rem;
                     width: auto;
@@ -205,8 +199,7 @@ $control-height: 2.5rem;
         display: block;
 
         @include lg {
-            max-width: 90%;
-         //   width: 100%;
+            max-width: 90%;      
         }
 
         @include xl {
@@ -244,6 +237,18 @@ $control-height: 2.5rem;
         margin-top: 0;
     }  
  }
+
+
+ .random-photo-frame .add-photo-btn,
+ .random-photo-frame .get-new-photo-btn {
+    @include xl {
+        width: 8rem;        
+    }
+    @include xxl {
+        width: 12.5rem;
+    } 
+ }
+
 
  .separator {
     margin-top: 2rem;
@@ -289,6 +294,7 @@ $control-height: 2.5rem;
 
  .photo-collection .heading .dynamic-message {
     margin-left: 0;
+    padding: 0 1rem;
   
     @include md {
         margin: 0 auto;      

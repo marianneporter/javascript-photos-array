@@ -27,8 +27,7 @@ addPhotoBtn.addEventListener('click', () => {
         emailErrorMsg.textContent = "Please Add an Email to Start Your Collection";
         return;
     }  
-
-
+   
     if (window.innerWidth < 768) { 
         addMsgToCollectionHeading("Your Collection...")
     } else { 

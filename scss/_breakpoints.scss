@@ -55,7 +55,6 @@ $landscape-phone-height: 450px;
     }
 }
 
-
 @mixin xxl {
     @media (min-width: map-get($breakpoints, "xxl")) {
         @content;

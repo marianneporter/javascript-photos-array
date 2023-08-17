@@ -25,8 +25,6 @@ class AppStateService {
     }
 
     addPhotoForCurrentUser(photo) {
-        console.log('in add photo for current user');
-        console.log('current user is ' + JSON.stringify(this.currentUser));
         this.currentUser.addPhoto(photo);
     }
 

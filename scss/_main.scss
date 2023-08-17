@@ -88,39 +88,71 @@ $control-height: 2.5rem;
         @include md {
             width: 10rem;
         }
-        
-        @include lg {
-            margin-top: 1rem;
-        }
 
         @include xl {
           width: 12rem;
         }        
     }  
 
-    // scss to display an email that has been selected
-    .current-email {
-        display: none;
-        margin-top: 0.75rem;
-        
-    }
-
-    .current-email-content {
-        display: inline-block;
-
-        .current-selected-email {
-            font-size: 1rem;
-            width: 30rem;
-            overflow: hidden;
+        // scss to display an email that has been selected
+        .current-email {
+            display: none;
+            margin-top: 0.75rem;            
         }
-    }
+
+ 
+
+        .email-hdr-colon {
+            display: none;
+            @include sm {
+                display: inline;
+            }
+
+        }
+    
+        .current-email-content {
+            display: inline-block;
+    
+            .current-selected-email {
+                font-size: 1rem;
+                width: 30rem;
+                overflow: hidden;
+
+                &::before {
+                    content: "\A";
+                    white-space: pre; 
+                }
+
+                &::before {
+                    @include sm {
+                        content: "";
+                        white-space: normal;
+                    }
+                }
 
 
+
+                // display: block;
+                // @include sm {
+                //     display: inline;
+                // }
+
+                @include md {
+                    font-size: 1.1rem;
+                    width: auto;
+                }
+
+                @include lg {
+                    font-size: 1.25rem;
+                    width: auto;
+                }
+            }
+        }
 }
 
 .email-error-message {
     padding-top: 0.25rem;
-    color: red;
+    color: map-get($colors, 'red');
  }  
  
  /******************************************************************/
@@ -173,8 +205,8 @@ $control-height: 2.5rem;
         display: block;
 
         @include lg {
-            max-width: 100%;
-            width: 100%;
+            max-width: 90%;
+         //   width: 100%;
         }
 
         @include xl {

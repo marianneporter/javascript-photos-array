@@ -61,6 +61,7 @@ addEmailBtn.addEventListener('click', () => {
         return;
     }
 
+    emailEl.value = validateCheck.formattedEmail;
     //change heading to include selected email and invite user to change it
     enterEmail.style.display = "none";
     currentEmail.style.display = "block";
@@ -101,14 +102,17 @@ function addPhotoCollectionElement(photoUrl) {
 }
 
 function validateEmail(email) {
+    
     if (!email) {
         return { valid: false, message: 'Please enter your email'}
     };  
 
+    email = email.toLowerCase();
+
     if (!emailRegex.test(email)) {
         return { valid: false, message: 'Please enter a valid email to start your collection'}
     }
-    return { valid: true, message: null };   
+    return { valid: true, message: null, formattedEmail: email };   
 }
 
 function addMsgToCollectionHeading(msg) {

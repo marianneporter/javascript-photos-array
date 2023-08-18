@@ -173,7 +173,8 @@ $control-height: 2.5rem;
         display: flex;
         justify-content: center;
         align-items: center;
-        background-color: white;      
+        background-color: white;   
+        background-color: lightcyan;   
     }
 
     .photo-collection-frame-outer {
@@ -313,11 +314,12 @@ $control-height: 2.5rem;
         flex-wrap: wrap;
         justify-content: center;
         gap: 1rem;
-        height: auto;       
+        height: auto; 
+        background-color: blue;      
     }
 
     @include xl {
-        height: 25rem;
+        height: 30rem;
         overflow-y: auto;
     }
 
@@ -326,14 +328,17 @@ $control-height: 2.5rem;
 
 //flex item for the above flex container
  .photo-collection .selected-photos .photo-box {
-    margin-top: 1rem;
-
+  //  margin-top: 1rem;
+  
     @include md {
        width: 40%;       
     }
 
     @include xl {
-        flex-basis: 22%;
+        width: 30%;
+        // flex: 1;
+        // max-width: 22%;
+        // max-height:2rem;
     }
  }
 
@@ -342,6 +347,7 @@ $control-height: 2.5rem;
     max-height: auto;
     margin: 0 auto;
     display: block;
+    background-color: yellow;
 
     @include md {
         width: 80%;

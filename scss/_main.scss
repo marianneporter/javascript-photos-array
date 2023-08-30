@@ -1,9 +1,8 @@
 $control-height: 2.5rem;
 
 .container {
-    padding: 1rem;
-   
-
+    padding: 1rem; 
+  
     @include md {
         width: 80%;
         margin: 0 auto;
@@ -14,7 +13,8 @@ $control-height: 2.5rem;
         width: 100%;
         height: 100%; 
         position: fixed;       
-        padding: 0;        
+        padding: 0;   
+        background-color: map-get($colors, dark-grey);
     }
 }
 
@@ -23,7 +23,7 @@ $control-height: 2.5rem;
     margin: 0 auto;
     text-align: center;
     color:  map-get($colors, 'dark-pink');
-    
+    background-color: white;    
 
     @include xl {
         height: 10rem;
@@ -164,10 +164,10 @@ $control-height: 2.5rem;
     .main {      
         display: flex;
         padding: 0.5rem;
-        height: calc(100vh - 10rem);
+   //   max-height: calc(100vh - 10rem);  
         gap: 2rem;
         padding: 5rem 10rem;
-        background-color: map-get($colors, dark-grey)
+        background-color: map-get($colors, dark-grey);
     }
 
     .random-photo-frame-outer, .photo-collection-frame-outer {
@@ -175,8 +175,8 @@ $control-height: 2.5rem;
         display: flex;
         justify-content: center;
         align-items: center;
-        background-color: white;   
-        background-color: lightcyan;   
+        background-color: white;  
+      
     }
 
     .photo-collection-frame-outer {
@@ -184,8 +184,7 @@ $control-height: 2.5rem;
     }
 
     .random-photo-frame-outer {
-        width: 40%;
- 
+        width: 40%; 
     }
     
     .photo-collection-frame-outer {
@@ -204,6 +203,7 @@ $control-height: 2.5rem;
         height: auto;
         margin: 1rem auto;
         display: block;
+        overflow: hidden;
 
         @include lg {
             max-width: 90%;      
@@ -353,7 +353,7 @@ $control-height: 2.5rem;
     max-height: auto;
     margin: 0 auto;
     display: block;
-    background-color: yellow;
+    //background-color: yellow;
 
     @include md {
         width: 80%;

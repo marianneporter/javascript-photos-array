@@ -5,6 +5,7 @@ class AppStateService {
     constructor() {
         this.users = [];
         this.currentUser = null;
+        this.randomPhoto = null;
     }
 
     addNewUser(email) {
@@ -27,11 +28,45 @@ class AppStateService {
     addPhotoForCurrentUser(photo) {
         this.currentUser.addPhoto(photo);
     }
-
-    currentUserPhotoCount() {     
-      
-        return this.currentUser.photos.length;
     
+    // inCurrentUserCollection(photo) {
+    //     return this.currentUser.photos.includes(photo);
+    // }
+
+    currentUserPhotoCount() {         
+        return this.currentUser.photos.length;    
+    }
+
+    // get non duplicate random photo frm api
+    async getNewRandomPhoto() {
+      
+        let photoNeeded = true;
+        let newRandomPhoto;
+
+        do {
+            newRandomPhoto = await apiService.fetchRandomPhoto();
+          
+
+            if (this.currentUser) {
+           
+
+                if (this.currentUser.photos.includes(newRandomPhoto)) {                   
+                    photoNeeded = true; 
+                  
+                } else {
+                    photoNeeded = false;
+                }
+            } else {
+
+                photoNeeded = false;
+               
+            }
+
+        } while (photoNeeded);
+
+        this.randomPhoto = newRandomPhoto;
+
+        return newRandomPhoto;
     }
 }
 

@@ -17,12 +17,13 @@ const appStateService = new AppStateService();
 
 const emailRegex = /^([a-z\d\.-]+)@([a-z\d]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/;
 
-apiService.fetchRandomPhoto()
+// get initial photo for app
+appStateService.getNewRandomPhoto()
     .then(res => {
-        randomPhotoElement.src = res;
+        randomPhotoElement.src = appStateService.randomPhoto;
     })
 
-addPhotoBtn.addEventListener('click', () => {
+addPhotoBtn.addEventListener('click', async () => {
     if (!emailEl.value) {
         emailErrorMsg.textContent = "Please Add an Email to Start Your Collection";
         return;
@@ -34,26 +35,35 @@ addPhotoBtn.addEventListener('click', () => {
         addMsgToCollectionHeading("Your Collection")
     }
    
-    appStateService.addPhotoForCurrentUser(randomPhotoElement.src);   
 
-    addPhotoCollectionElement(randomPhotoElement.src);
+    addPhotoBtn.disabled = true;
+    getNewPhotoBtn.disabled = true;
+    appStateService.addPhotoForCurrentUser(appStateService.randomPhoto);   
 
-    apiService.fetchRandomPhoto()
-    .then(res => {
-        randomPhotoElement.src = res;
-    })
+    addPhotoCollectionElement(appStateService.randomPhoto);
+
+    let newRandomPhoto = await appStateService.getNewRandomPhoto();
+
+    addPhotoBtn.disabled = false;
+    getNewPhotoBtn.disabled = false;
+
+    console.log(newRandomPhoto);
+ 
+    
+    randomPhotoElement.src = appStateService.randomPhoto;
+   
 
 });
 
 getNewPhotoBtn.addEventListener('click', () => {   
-    apiService.fetchRandomPhoto()
+    appStateService.getNewRandomPhoto()
     .then(res => {          
-        randomPhotoElement.src = res;
+        randomPhotoElement.src = appStateService.randomPhoto;
     });
 });
 
 addEmailBtn.addEventListener('click', () => {
-
+    console.log('add email button event fired');
     let validateCheck = validateEmail(emailEl.value);
 
     if (!validateCheck.valid) {
@@ -74,8 +84,12 @@ addEmailBtn.addEventListener('click', () => {
         addMsgToCollectionHeading(`Your collection is empty! Select the current photo
                                                              or click next to choose another....`);
     } else {
+        addMsgToCollectionHeading(`Add more to your collection here...`);
         existingPhotos.forEach(p => addPhotoCollectionElement(p));        
-    }         
+    };
+    
+    addPhotoBtn.disabled = false;
+    getNewPhotoBtn.disabled = false;
   
 });
 
@@ -85,6 +99,9 @@ changeEmailBtn.addEventListener('click', () => {
     selectedPhotos.innerHTML = "";
     emailEl.value = "";
     addMsgToCollectionHeading("Add a new email and see your photo selections for it here!");
+    console.log('end of changeEmailBtn event listener');
+    addPhotoBtn.disabled = true;
+    getNewPhotoBtn.disabled = true;
 })
 
 emailEl.addEventListener('input', () => {    

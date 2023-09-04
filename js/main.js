@@ -46,12 +46,8 @@ addPhotoBtn.addEventListener('click', async () => {
 
     addPhotoBtn.disabled = false;
     getNewPhotoBtn.disabled = false;
-
-    console.log(newRandomPhoto);
- 
     
-    randomPhotoElement.src = appStateService.randomPhoto;
-   
+    randomPhotoElement.src = appStateService.randomPhoto;   
 
 });
 
@@ -63,7 +59,7 @@ getNewPhotoBtn.addEventListener('click', () => {
 });
 
 addEmailBtn.addEventListener('click', () => {
-    console.log('add email button event fired');
+  
     let validateCheck = validateEmail(emailEl.value);
 
     if (!validateCheck.valid) {
@@ -98,8 +94,7 @@ changeEmailBtn.addEventListener('click', () => {
     currentEmail.style.display = "none";
     selectedPhotos.innerHTML = "";
     emailEl.value = "";
-    addMsgToCollectionHeading("Add a new email and see your photo selections for it here!");
-    console.log('end of changeEmailBtn event listener');
+    addMsgToCollectionHeading("Add a new email and see your photo selections for it here!");  
     addPhotoBtn.disabled = true;
     getNewPhotoBtn.disabled = true;
 })

@@ -81,7 +81,11 @@ addEmailBtn.addEventListener('click', () => {
                                                              or click next to choose another....`);
     } else {
         addMsgToCollectionHeading(`Add more to your collection here...`);
-        existingPhotos.forEach(p => addPhotoCollectionElement(p));        
+    
+        for (let i = existingPhotos.length -1 ; i >= 0; i--) {
+            
+            addPhotoCollectionElement(existingPhotos[i]);
+        }     
     };
     
     addPhotoBtn.disabled = false;
@@ -109,8 +113,8 @@ function addPhotoCollectionElement(photoUrl) {
     let image = document.createElement('img');
     image.src = photoUrl;
     image.classList.add('photo-box-img');
-    photoBox.appendChild(image);
-    selectedPhotos.appendChild(photoBox);    
+    photoBox.append(image);
+    selectedPhotos.prepend(photoBox);    
 }
 
 function validateEmail(email) {
@@ -132,5 +136,5 @@ function addMsgToCollectionHeading(msg) {
     let headingPara = document.createElement('p');
     headingPara.textContent = msg;
     headingPara.classList.add('dynamic-message');
-    photoCollectionHeading.appendChild(headingPara);
+    photoCollectionHeading.append(headingPara);
 }

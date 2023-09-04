@@ -332,6 +332,10 @@ $control-height: 2.5rem;
         gap: 1rem;
         height: auto;            
     } 
+
+    @include xl {
+        padding-bottom: 1rem;
+    }
  }
 
 //flex item for the above flex container

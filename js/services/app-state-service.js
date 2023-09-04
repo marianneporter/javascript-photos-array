@@ -28,10 +28,6 @@ class AppStateService {
     addPhotoForCurrentUser(photo) {
         this.currentUser.addPhoto(photo);
     }
-    
-    // inCurrentUserCollection(photo) {
-    //     return this.currentUser.photos.includes(photo);
-    // }
 
     currentUserPhotoCount() {         
         return this.currentUser.photos.length;    
@@ -44,11 +40,9 @@ class AppStateService {
         let newRandomPhoto;
 
         do {
-            newRandomPhoto = await apiService.fetchRandomPhoto();
-          
+            newRandomPhoto = await apiService.fetchRandomPhoto();          
 
-            if (this.currentUser) {
-           
+            if (this.currentUser) {           
 
                 if (this.currentUser.photos.includes(newRandomPhoto)) {                   
                     photoNeeded = true; 

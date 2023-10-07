@@ -5,12 +5,13 @@ const photoCollection = document.querySelector('.photo-collection');
 const photoCollectionHeading = document.querySelector('.photo-collection .heading');
 const selectedPhotos = document.querySelector('.selected-photos');
 const addEmailBtn = document.querySelector('.add-email-btn');
-const changeEmailBtn = document.querySelector('.change-email-btn');
+const addAnotherEmailBtn = document.querySelector('.add-another-email-btn');
 const currentSelectedEmail = document.querySelector('.current-selected-email');
 const enterEmail = document.querySelector('.enter-email-startup');
 const currentEmail = document.querySelector('.current-email');
 const emailEl = document.querySelector('.email-input');
 const emailErrorMsg = document.querySelector(".email-error-message");
+const userSelect = document.querySelector(".user-select");
 
 const apiService = new ApiService();
 const appStateService = new AppStateService();
@@ -24,6 +25,8 @@ appStateService.getNewRandomPhoto()
     })
 
 addPhotoBtn.addEventListener('click', async () => {
+    console.log('in add photo btn add event listener');
+
     if (!emailEl.value) {
         emailErrorMsg.textContent = "Please Add an Email to Start Your Collection";
         return;
@@ -38,7 +41,9 @@ addPhotoBtn.addEventListener('click', async () => {
 
     addPhotoBtn.disabled = true;
     getNewPhotoBtn.disabled = true;
-    appStateService.addPhotoForCurrentUser(appStateService.randomPhoto);   
+    appStateService.addPhotoForCurrentUser(appStateService.randomPhoto); 
+    console.log('current user is ');
+    console.log(appStateService.currentUser);  
 
     addPhotoCollectionElement(appStateService.randomPhoto);
 
@@ -73,6 +78,8 @@ addEmailBtn.addEventListener('click', () => {
     currentEmail.style.display = "block";
     currentSelectedEmail.textContent =  emailEl.value;
 
+    setupUserSelect();
+
     // valid email display existing photos or empty collection with message 
     let existingPhotos = appStateService.getOrAddUser(emailEl.value);
 
@@ -93,7 +100,7 @@ addEmailBtn.addEventListener('click', () => {
   
 });
 
-changeEmailBtn.addEventListener('click', () => {
+addAnotherEmailBtn.addEventListener('click', () => {
     enterEmail.style.display = "block";
     currentEmail.style.display = "none";
     selectedPhotos.innerHTML = "";
@@ -113,7 +120,7 @@ function addPhotoCollectionElement(photoUrl) {
     let image = document.createElement('img');
     image.src = photoUrl;
     image.classList.add('photo-box-img');
-    photoBox.append(image);
+    photoBox.append(image);  
     selectedPhotos.prepend(photoBox);    
 }
 
@@ -137,4 +144,20 @@ function addMsgToCollectionHeading(msg) {
     headingPara.textContent = msg;
     headingPara.classList.add('dynamic-message');
     photoCollectionHeading.append(headingPara);
+}
+
+function setupUserSelect() {
+    console.log('users for select');
+    let usersForSelect = appStateService.getNonCurrentUsers();
+    console.log(usersForSelect);
+    let optionsToRemove = userSelect.querySelectorAll('option:not(:first-child)');
+    optionsToRemove.forEach(o => o.remove());
+
+    
+    usersForSelect.forEach(u => {
+        let optionEl = document.createElement('option');
+        optionEl.value = u.email;
+        optionEl.innerHTML = u.email;
+        userSelect.appendChild(optionEl);
+    })
 }

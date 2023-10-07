@@ -69,7 +69,7 @@ $control-height: 2.5rem;
         }
     }
 
-    .change-email-btn {
+    .add-another-email-btn {
         @include btn;
         @include primary-btn; 
         margin-top: 0.75rem;
@@ -151,6 +151,18 @@ $control-height: 2.5rem;
     padding-top: 0.25rem;
     color: map-get($colors, 'red');
  }  
+
+ .user-collections {
+    .user-select {
+        margin-top: 0.5rem;
+        width: 15rem;
+        height: $control-height;
+        border: 0.15rem solid map-get($colors, 'dark-pink');
+        border-radius: 0.25rem;
+        color: map-get($colors, 'dark-pink');
+        font-weight: 600;
+    }
+ }
  
  /******************************************************************/
  /* main div containing random photo area and the photo collection */

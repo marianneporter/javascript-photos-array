@@ -76,12 +76,41 @@ addEmailBtn.addEventListener('click', () => {
     //change heading to include selected email and invite user to change it
     enterEmail.style.display = "none";
     currentEmail.style.display = "block";
-    currentSelectedEmail.textContent =  emailEl.value;
-
-    setupUserSelect();
-
+   
     // valid email display existing photos or empty collection with message 
-    let existingPhotos = appStateService.getOrAddUser(emailEl.value);
+
+    setStateForCurrentUser(emailEl.value);  
+    
+    addPhotoBtn.disabled = false;
+    getNewPhotoBtn.disabled = false;
+  
+});
+
+addAnotherEmailBtn.addEventListener('click', () => {
+    enterEmail.style.display = "block";
+    currentEmail.style.display = "none";
+ //   selectedPhotos.innerHTML = "";
+    emailEl.value = "";
+    addMsgToCollectionHeading("Add a new email and see your photo selections for it here!");  
+    addPhotoBtn.disabled = true;
+    getNewPhotoBtn.disabled = true;
+})
+
+emailEl.addEventListener('input', () => {    
+    emailErrorMsg.textContent = "";
+});
+
+userSelect.addEventListener('change', () => {
+    console.log('select changed');
+    console.log(userSelect.value);
+    setStateForCurrentUser(userSelect.value);
+})
+
+function setStateForCurrentUser(emailForDisplay) {
+    currentSelectedEmail.textContent =  emailForDisplay; 
+    selectedPhotos.innerHTML = "";  
+
+    let existingPhotos = appStateService.getOrAddUser(emailForDisplay);
 
     if (existingPhotos.length == 0) {   
         addMsgToCollectionHeading(`Your collection is empty! Select the current photo
@@ -94,25 +123,10 @@ addEmailBtn.addEventListener('click', () => {
             addPhotoCollectionElement(existingPhotos[i]);
         }     
     };
-    
-    addPhotoBtn.disabled = false;
-    getNewPhotoBtn.disabled = false;
-  
-});
 
-addAnotherEmailBtn.addEventListener('click', () => {
-    enterEmail.style.display = "block";
-    currentEmail.style.display = "none";
-    selectedPhotos.innerHTML = "";
-    emailEl.value = "";
-    addMsgToCollectionHeading("Add a new email and see your photo selections for it here!");  
-    addPhotoBtn.disabled = true;
-    getNewPhotoBtn.disabled = true;
-})
+    setupUserSelect();
+}
 
-emailEl.addEventListener('input', () => {    
-    emailErrorMsg.textContent = "";
-});
 
 function addPhotoCollectionElement(photoUrl) {
     let photoBox = document.createElement('div');

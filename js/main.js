@@ -177,7 +177,7 @@ function setupUserSelect() {
 
     usersForSelect.forEach(u => {
         let optionEl = document.createElement('option');
- 
+       
         optionEl.value = u.email;
         optionEl.innerHTML = u.email;
         userSelect.appendChild(optionEl);

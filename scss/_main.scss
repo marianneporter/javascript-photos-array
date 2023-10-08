@@ -77,6 +77,7 @@ $control-height: 2.5rem;
 
         @include md {
             width: 8rem;
+            margin-top: 1.15rem;
         }
 
     }
@@ -149,24 +150,34 @@ $control-height: 2.5rem;
     color: map-get($colors, 'red');
  }  
 
+ .change-email-controls {
+
+    @include md {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+    }
+ }
+
  .user-collections {
     display: none;
     max-width: 100%;
+    overflow: hidden;
 
     .user-select {
-        margin-top: 0.5rem;
-             
+        margin-top: 0.5rem;             
         height: $control-height;
         border: 0.15rem solid map-get($colors, 'dark-pink');
         border-radius: 0.25rem;
         color: map-get($colors, 'dark-pink');
         font-weight: 600;
+        width: 12rem;
+        outline: none;
 
-        width: 100%;
-
-        option {
-            width: 100vw;
-          
+        &:focus {
+            border: 0.15rem solid map-get($colors, 'dark-pink');
+            outline: none;
         }
     }
  }

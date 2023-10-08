@@ -26,8 +26,7 @@ appStateService.getNewRandomPhoto()
     })
 
 addPhotoBtn.addEventListener('click', async () => {
-    console.log('in add photo btn add event listener');
-
+   
     if (!emailEl.value) {
         emailErrorMsg.textContent = "Please Add an Email to Start Your Collection";
         return;
@@ -42,9 +41,7 @@ addPhotoBtn.addEventListener('click', async () => {
 
     addPhotoBtn.disabled = true;
     getNewPhotoBtn.disabled = true;
-    appStateService.addPhotoForCurrentUser(appStateService.randomPhoto); 
-    console.log('current user is ');
-    console.log(appStateService.currentUser);  
+    appStateService.addPhotoForCurrentUser(appStateService.randomPhoto);     
 
     addPhotoCollectionElement(appStateService.randomPhoto);
 
@@ -90,7 +87,7 @@ addEmailBtn.addEventListener('click', () => {
 addAnotherEmailBtn.addEventListener('click', () => {
     enterEmail.style.display = "block";
     currentEmail.style.display = "none";
- //   selectedPhotos.innerHTML = "";
+    selectedPhotos.innerHTML = "";
     emailEl.value = "";
     addMsgToCollectionHeading("Add a new email and see your photo selections for it here!");  
     addPhotoBtn.disabled = true;
@@ -101,9 +98,7 @@ emailEl.addEventListener('input', () => {
     emailErrorMsg.textContent = "";
 });
 
-userSelect.addEventListener('change', () => {
-    console.log('select changed');
-    console.log(userSelect.value);
+userSelect.addEventListener('change', () => { 
     setStateForCurrentUser(userSelect.value);
 })
 
@@ -165,9 +160,7 @@ function setupUserSelect() {
     let optionsToRemove = userSelect.querySelectorAll('option:not(:first-child)');
     optionsToRemove.forEach(o => o.remove());
 
-    let usersForSelect = appStateService.getNonCurrentUsers(); 
-    console.log(usersForSelect);
-    console.log(usersForSelect.length);
+    let usersForSelect = appStateService.getNonCurrentUsers();   
     if (usersForSelect.length < 1) {
         return;
     }

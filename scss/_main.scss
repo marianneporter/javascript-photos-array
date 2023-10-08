@@ -161,27 +161,30 @@ $control-height: 2.5rem;
  }
 
  .user-collections {
-    display: none;
-    max-width: 100%;
-    overflow: hidden;
+    display: none; 
 
-    .user-select {
+    .user-select {      
         margin-top: 0.5rem;             
         height: $control-height;
         border: 0.15rem solid map-get($colors, 'dark-pink');
         border-radius: 0.25rem;
-        color: map-get($colors, 'dark-pink');
+        color: map-get($colors, 'dark-pink');  
+        background-color: white;      
         font-weight: 600;
-        width: 12rem;
+        width: 100%;
         outline: none;
+        padding-left: 0.25rem;     
+       
+        @include md {
+            width: 12rem;
+        }
 
         &:focus {
             border: 0.15rem solid map-get($colors, 'dark-pink');
             outline: none;
         }
     }
- }
- 
+}
  /******************************************************************/
  /* main div containing random photo area and the photo collection */
  /* random photo and selection area                                */
@@ -193,8 +196,7 @@ $control-height: 2.5rem;
 @include xl {
     .main {      
         display: flex;
-        padding: 0.5rem;
-   //   max-height: calc(100vh - 10rem);  
+        padding: 0.5rem; 
         gap: 2rem;
         padding: 5rem 10rem;
         background-color: map-get($colors, dark-grey);
@@ -353,6 +355,7 @@ $control-height: 2.5rem;
  //set up flex container for md, lg and xl screens for the photo collection
  .photo-collection .selected-photos {
     margin: 0 auto;
+    padding-bottom: 1rem;
   
     @include md {  
         display: flex;
@@ -363,9 +366,6 @@ $control-height: 2.5rem;
         height: auto;            
     } 
 
-    @include xl {
-        padding-bottom: 1rem;
-    }
  }
 
 //flex item for the above flex container
@@ -387,7 +387,6 @@ $control-height: 2.5rem;
     max-height: auto;
     margin: 0 auto;
     display: block;
-    //background-color: yellow;
 
     @include md {
         width: 80%;

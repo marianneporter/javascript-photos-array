@@ -101,16 +101,13 @@ $control-height: 2.5rem;
         .current-email {
             display: none;
             margin-top: 0.75rem;            
-        }
-
- 
+        } 
 
         .email-hdr-colon {
             display: none;
             @include sm {
                 display: inline;
             }
-
         }
     
         .current-email-content {
@@ -153,14 +150,24 @@ $control-height: 2.5rem;
  }  
 
  .user-collections {
+    display: none;
+    max-width: 100%;
+
     .user-select {
         margin-top: 0.5rem;
-        width: 15rem;
+             
         height: $control-height;
         border: 0.15rem solid map-get($colors, 'dark-pink');
         border-radius: 0.25rem;
         color: map-get($colors, 'dark-pink');
         font-weight: 600;
+
+        width: 100%;
+
+        option {
+            width: 100vw;
+          
+        }
     }
  }
  

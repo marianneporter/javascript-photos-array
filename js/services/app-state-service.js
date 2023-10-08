@@ -26,7 +26,7 @@ class AppStateService {
     }
 
     getNonCurrentUsers() {
-        return this.users.filter(u => u.email != this.currentUser);
+        return this.users.filter(u => u.email != this.currentUser.email);
     }
 
     addPhotoForCurrentUser(photo) {

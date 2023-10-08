@@ -12,6 +12,7 @@ const currentEmail = document.querySelector('.current-email');
 const emailEl = document.querySelector('.email-input');
 const emailErrorMsg = document.querySelector(".email-error-message");
 const userSelect = document.querySelector(".user-select");
+const userCollections = document.querySelector(".user-collections");
 
 const apiService = new ApiService();
 const appStateService = new AppStateService();
@@ -161,17 +162,26 @@ function addMsgToCollectionHeading(msg) {
 }
 
 function setupUserSelect() {
-    console.log('users for select');
-    let usersForSelect = appStateService.getNonCurrentUsers();
-    console.log(usersForSelect);
     let optionsToRemove = userSelect.querySelectorAll('option:not(:first-child)');
     optionsToRemove.forEach(o => o.remove());
 
-    
+    let usersForSelect = appStateService.getNonCurrentUsers(); 
+    console.log(usersForSelect);
+    console.log(usersForSelect.length);
+    if (usersForSelect.length < 1) {
+        return;
+    }
+
+   
+    userCollections.style.display = "block";
+
     usersForSelect.forEach(u => {
         let optionEl = document.createElement('option');
+ 
         optionEl.value = u.email;
         optionEl.innerHTML = u.email;
         userSelect.appendChild(optionEl);
     })
+
+    
 }

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="select2/css/select2.min.css">
     <link rel="stylesheet" href="css/index.css"> 
     <title>Javascript Array</title>
 </head>
@@ -26,13 +27,12 @@
                 </h3>  
                 <div class="change-email-controls">
                     <div class="user-collections">                  
-                        <select class="user-select">
-                            <option hidden value="">Change Email</option>    
+                        <select id="user-select" class="user-select" style="width: 100%; color: red" placeholder="hello" >
+                            <option value=""></option>    
                         </select>
                     </div>        
                     <button class="add-another-email-btn">Add New Email</button>  
-                </div>              
-
+                </div>
             </div>    
         </header>  
 
@@ -68,9 +68,11 @@
         </main>
     </div>
 
+    <script src="js/jquery-3.7.0.min.js"></script>
+    <script src="select2/js/select2.min.js"></script>
     <script src="js/models/user.js"></script>
     <script src="js/services/api-service.js"></script>  
-    <script src="js/services/app-state-service.js"></script>
+    <script src="js/services/app-state-service.js"></script>   
     <script src="js/main.js"></script>
 </body>
 </html>

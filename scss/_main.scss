@@ -79,7 +79,6 @@ $control-height: 2.5rem;
             width: 8rem;
             margin-top: 1.15rem;
         }
-
     }
 
     .add-email-btn {
@@ -95,54 +94,55 @@ $control-height: 2.5rem;
 
         @include xl {
           width: 12rem;
-        }        
+        }   
+
     }  
 
-        // scss to display an email that has been selected
-        .current-email {
-            display: none;
-            margin-top: 0.75rem;            
-        } 
+    // scss to display an email that has been selected
+    .current-email {
+        display: none;
+        margin-top: 0.75rem;            
+    } 
 
-        .email-hdr-colon {
-            display: none;
-            @include sm {
-                display: inline;
-            }
+    .email-hdr-colon {
+        display: none;
+        @include sm {
+            display: inline;
         }
-    
-        .current-email-content {
-            display: inline-block;
-    
-            .current-selected-email {
-                font-size: 1rem;
-                width: 30rem;
-                overflow: hidden;
+    }
 
-                &::before {
-                    content: "\A";
-                    white-space: pre; 
-                }
+    .current-email-content {
+        display: inline-block;
 
-                &::before {
-                    @include sm {
-                        content: "";
-                        white-space: normal;
-                    }
-                }
+        .current-selected-email {
+            font-size: 1rem;
+            width: 30rem;
+            overflow: hidden;
 
+            &::before {
+                content: "\A";
+                white-space: pre; 
+            }
 
-                @include md {
-                    font-size: 1.1rem;
-                    width: auto;
-                }
-
-                @include lg {
-                    font-size: 1.25rem;
-                    width: auto;
+            &::before {
+                @include sm {
+                    content: "";
+                    white-space: normal;
                 }
             }
+
+
+            @include md {
+                font-size: 1.1rem;
+                width: auto;
+            }
+
+            @include lg {
+                font-size: 1.25rem;
+                width: auto;
+            }
         }
+    }
 }
 
 .email-error-message {
@@ -163,26 +163,15 @@ $control-height: 2.5rem;
  .user-collections {
     display: none; 
 
-    .user-select {      
-        margin-top: 0.5rem;             
-        height: $control-height;
-        border: 0.15rem solid map-get($colors, 'dark-pink');
-        border-radius: 0.25rem;
-        color: map-get($colors, 'dark-pink');  
-        background-color: white;      
-        font-weight: 600;
-        width: 100%;
-        outline: none;
-        padding-left: 0.25rem;     
-       
-        @include md {
-            width: 12rem;
-        }
-
-        &:focus {
-            border: 0.15rem solid map-get($colors, 'dark-pink');
-            outline: none;
-        }
+    margin-top: 0.5rem;             
+    height: $control-height;   
+    border-radius: 0.25rem;
+    color: map-get($colors, 'dark-pink');
+    background-color: white;      
+    font-weight: 600;      
+   
+    @include md {
+        width: 16rem;
     }
 }
  /******************************************************************/
@@ -396,4 +385,48 @@ $control-height: 2.5rem;
         width: 100%;
     }    
  } 
+
+ /************************************************************************/
+ /*  override styling for select2                                        */
+ /************************************************************************/                                       
+
+ .select2-selection {
+    border: 0.15rem solid map-get($colors, 'dark-pink') !important;   
+    padding-top: 0.3rem; 
+    font-size: 0.85rem;
+    color: map-get($colors, 'dark-pink') !important;
+
+    &:hover  {
+        border: 0.2rem solid map-get($colors, 'dark-pink') !important;
+        outline: none;
+    }   
+}
+
+.select2-selection {
+    min-width: 100% !important;
+    height: 2.5rem !important;   
+    padding-left: 1rem;
+}
+
+.select2-selection__arrow {        
+    height: 2.5rem !important;     
+    padding-right: 2rem;   
+    color:  #9D3256 !important;   
+}   
+
+.select2-results {
+    font-size: 0.75rem;
+    width: auto;
+    text-align: center;
+}
+
+.select2-results__option--highlighted {  
+    background-color:  #9D3256 !important; 
+    color: white;
+}
+
+.select2-results__option--selected {  
+    background-color:  lighten(#9d3256, 50%) !important;    
+}
+
  

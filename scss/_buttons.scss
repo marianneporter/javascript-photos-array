@@ -8,11 +8,18 @@
     @include md {
         width: 12.5rem;     
     }
+
+ 
 }
 
 @mixin primary-btn {
     background-color: map-get($colors, 'dark-pink');
     color: white;
+
+    &:hover {
+        background-color: darken(map-get($colors, 'dark-pink'), 5%);
+        cursor: pointer;
+    }
 }
 
 @mixin primary-btn-outline {
@@ -24,6 +31,12 @@
 @mixin accent-btn {
     background-color: map-get($colors, 'blue');
     color: white;
+
+    &:hover {
+        background-color: darken(map-get($colors, 'blue'), 5%);
+        cursor: pointer;
+    }
+
 }
 
 @mixin accent-btn-outline {

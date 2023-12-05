@@ -14,16 +14,41 @@ const emailErrorMsg = document.querySelector(".email-error-message");
 const userSelect = document.querySelector(".user-select");
 const userCollections = document.querySelector(".user-collections");
 
+const emailRegex = /^([a-z\d\.-]+)@([a-z\d]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/;
+
+/***************************************************************************/
+/* Initial Setup                                                           */
+/***************************************************************************/
+
 const apiService = new ApiService();
 const appStateService = new AppStateService();
 
-const emailRegex = /^([a-z\d\.-]+)@([a-z\d]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/;
-
-// get initial photo for app
 appStateService.getNewRandomPhoto()
     .then(res => {
         randomPhotoElement.src = appStateService.randomPhoto;
-    })
+})
+
+/**************************************************************************/
+/*  Initialise select2 plugin                                             */ 
+/**************************************************************************/
+
+$(document).ready(function() {   
+  
+    $('.user-select').select2({
+        placeholder: 'Change Email',
+        minimumResultsForSearch: Infinity,
+        width: 'resolve'       
+    });
+
+    $('.user-select').on('select2:select', function (e) {
+        setStateForCurrentUser(e.params.data.text);      
+    });  
+})
+
+
+/***************************************************************************/
+/* Event Listeners                                                         */
+/***************************************************************************/
 
 addPhotoBtn.addEventListener('click', async () => {
    
@@ -36,8 +61,7 @@ addPhotoBtn.addEventListener('click', async () => {
         addMsgToCollectionHeading("Your Collection...")
     } else { 
         addMsgToCollectionHeading("Your Collection")
-    }
-   
+    }   
 
     addPhotoBtn.disabled = true;
     getNewPhotoBtn.disabled = true;
@@ -98,9 +122,26 @@ emailEl.addEventListener('input', () => {
     emailErrorMsg.textContent = "";
 });
 
-userSelect.addEventListener('change', () => { 
-    setStateForCurrentUser(userSelect.value);
-})
+
+
+/************************************************************************/
+/*  general functions for page calls on model and utility classes as    */ 
+/*  necessary                                                           */
+/************************************************************************/ 
+
+function validateEmail(email) {
+    
+    if (!email) {
+        return { valid: false, message: 'Please enter your email'}
+    };  
+
+    email = email.toLowerCase();
+
+    if (!emailRegex.test(email)) {
+        return { valid: false, message: 'Please enter a valid email to start your collection'}
+    }
+    return { valid: true, message: null, formattedEmail: email };   
+}
 
 function setStateForCurrentUser(emailForDisplay) {
     currentSelectedEmail.textContent =  emailForDisplay; 
@@ -134,19 +175,6 @@ function addPhotoCollectionElement(photoUrl) {
     selectedPhotos.prepend(photoBox);    
 }
 
-function validateEmail(email) {
-    
-    if (!email) {
-        return { valid: false, message: 'Please enter your email'}
-    };  
-
-    email = email.toLowerCase();
-
-    if (!emailRegex.test(email)) {
-        return { valid: false, message: 'Please enter a valid email to start your collection'}
-    }
-    return { valid: true, message: null, formattedEmail: email };   
-}
 
 function addMsgToCollectionHeading(msg) {
     photoCollectionHeading.innerHTML = "";
@@ -164,7 +192,6 @@ function setupUserSelect() {
     if (usersForSelect.length < 1) {
         return;
     }
-
    
     userCollections.style.display = "block";
 
@@ -174,7 +201,5 @@ function setupUserSelect() {
         optionEl.value = u.email;
         optionEl.innerHTML = u.email;
         userSelect.appendChild(optionEl);
-    })
-
-    
+    })    
 }

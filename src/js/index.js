@@ -1,3 +1,9 @@
+import '../scss/index.scss';
+import $ from 'jquery';
+import 'select2';
+import AppStateService from "./services/app-state-service";
+
+
 const randomPhotoElement = document.querySelector('.random-photo');
 const addPhotoBtn = document.querySelector('.add-photo-btn');
 const getNewPhotoBtn = document.querySelector('.get-new-photo-btn')
@@ -20,7 +26,7 @@ const emailRegex = /^([a-z\d\.-]+)@([a-z\d]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/;
 /* Initial Setup                                                           */
 /***************************************************************************/
 
-const apiService = new ApiService();
+
 const appStateService = new AppStateService();
 
 appStateService.getNewRandomPhoto()
@@ -32,7 +38,7 @@ appStateService.getNewRandomPhoto()
 /*  Initialise select2 plugin                                             */ 
 /**************************************************************************/
 
-$(document).ready(function() {   
+$(function() {   
   
     $('.user-select').select2({
         placeholder: 'Change Email',

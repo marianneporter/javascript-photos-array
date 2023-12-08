@@ -1,8 +1,13 @@
 /*******************************************************************/
 /* controls app state, list of users and reference to current user */
 /*******************************************************************/
+
+import ApiService from "./api-service";
+import User from "../models/user";
+
 class AppStateService {
     constructor() {
+        this.apiService = new ApiService();
         this.users = [];
         this.currentUser = null;
         this.randomPhoto = null;
@@ -44,7 +49,7 @@ class AppStateService {
         let newRandomPhoto;
 
         do {
-            newRandomPhoto = await apiService.fetchRandomPhoto();          
+            newRandomPhoto = await this.apiService.fetchRandomPhoto();          
 
             if (this.currentUser) {           
 
@@ -68,3 +73,4 @@ class AppStateService {
     }
 }
 
+export default AppStateService;

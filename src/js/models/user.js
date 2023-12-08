@@ -8,3 +8,5 @@ class User {
         this.photos.unshift(photoUrl);
     }
 }
+
+export default User;

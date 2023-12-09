@@ -1,4 +1,3 @@
-// webpack.config.js
 const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -61,7 +60,8 @@ module.exports = {
         new HtmlWebpackPlugin({
             title: 'JavaScript Arrays Demo',
             template: 'src/template.html',
-            filename: 'index.html',            
+            filename: 'index.html',  
+            favicon: 'src/favicon.ico'      
         }),
         
         new webpack.ProvidePlugin({

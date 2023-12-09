@@ -1,13 +1,12 @@
 @font-face {
     font-family: 'Rubik Regular';
-    src: url("/assets/fonts/Rubik-Regular.ttf") format("truetype");
+    src: url("../assets/fonts/Rubik-Regular.ttf") format("truetype");
 }
 
 body {
     overflow-x: hidden;
     font-family: 'Rubik Regular'; 
 }
-
 
 input, textarea {
     font-family: 'Rubik Regular'; 
